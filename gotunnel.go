@@ -8,7 +8,6 @@ import (
   "os"
   "os/signal"
   "launchpad.net/goyaml"
-  "text/tabwriter"
   "github.com/wsxiaoys/terminal/color"
 )
 
@@ -33,9 +32,6 @@ func main() {
   var conf Conf
   goyaml.Unmarshal(bytes, &conf);
 
-  w := new(tabwriter.Writer)
-  w.Init(os.Stdout, 20, 4, 2, ' ', 0)
-
   color.Printf("@{!}%-14s %-26s %-10s %-10s\n", "host", "service", "local", "remote")
 
   for host, tunnels := range conf.Hosts {
@@ -54,7 +50,6 @@ func main() {
 
     }
     args = append(args, "-N", host)
-    w.Flush()
     go func() {
       cmd := exec.Command("ssh", args...)    
       err = cmd.Start()
