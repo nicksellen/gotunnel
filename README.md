@@ -1,7 +1,7 @@
 gotunnel
 ========
 
-creates ssh tunnels from simple yaml configuration
+creates ssh tunnels using simple yaml configuration
 
 run it like this:
 ````
